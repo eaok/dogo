@@ -15,3 +15,8 @@ func main() {
 	})
 	g.Run(":9999")
 }
+
+func show() {
+    println("hello")
+    println("world")
+}
