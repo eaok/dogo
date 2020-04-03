@@ -13,10 +13,6 @@ func main() {
 			"Message": "hello world",
 		})
 	})
-	g.Run(":9999")
-}
 
-func show() {
-    println("hello")
-    println("world")
+	g.Run(":8888")
 }
