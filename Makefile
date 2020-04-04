@@ -7,15 +7,30 @@ BUILD=`date +%FT%T%z`
 default:
 	go build -o ${BINARY}  -tags=jsoniter
 
+docker: alpine dist golang multi latest scratch clean
 
-docker:
+alpine:
 	docker build -f alpine.Dockerfile -t ${BINARY}:alpine .
+
+dist:
 	docker build -f distroless.Dockerfile -t ${BINARY}:dist .
+
+golang:
 	docker build -f golang.Dockerfile -t ${BINARY}:golang .
-	docker build -f scratch.Dockerfile -t ${BINARY}:scratch .
+
+multi:
 	docker build -f multiBuild.Dockerfile -t ${BINARY}:multi .
 
-clean:
-	if [ -f ${BINARY} ] ; then rm ${BINARY} ; fi
+latest:
+	docker build -t ${BINARY}:latest .
 
-.PHONY:  clean
+scratch:
+	@scratch.bat
+#	go build -o ${BINARY} #环境变量设置不成功过，在bat中编译
+	docker build -f scratch.Dockerfile -t ${BINARY}:scratch .
+
+
+clean:
+	del $(BINARY)
+
+.PHONY: clean docker alpine dist golang multi latest scratch

@@ -1,4 +1,4 @@
-FROM golang:1.14-alpine
+FROM golang:alpine
 LABEL MAINTAINER="kcoewoys"
 
 ENV GOPROXY=https://goproxy.cn,direct
@@ -20,7 +20,7 @@ RUN sed -i "s/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g" /etc/apk/repositories
 RUN make
 # RUN make && apk del mypacks
 
-CMD /home/docker/dogo
+CMD ["/home/docker/dogo"]
 
 #docker build -f alpine.Dockerfile -t dogo:alpine .
 #docker run --rm -p 8888:8888 dogo:alpine

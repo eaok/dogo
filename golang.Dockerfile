@@ -1,4 +1,4 @@
-FROM golang:1.14
+FROM golang:latest
 LABEL MAINTAINER="kcoewoys"
 
 ENV GOPROXY=https://goproxy.cn,direct

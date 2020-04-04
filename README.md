@@ -6,3 +6,6 @@
 
 ---
 > docker test for [daocloud.io](https://account.daocloud.io)
+
+最终镜像大小如下：
+![](http://blog.maser.top/docker/docker_images_size.png)

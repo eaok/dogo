@@ -1,13 +1,11 @@
-FROM  golang:1.14 as build-env
-LABEL MAINTAINER="kcoewoys"
-
+FROM  golang:latest as build-env
 ENV GOPROXY=https://goproxy.cn,direct
-
 WORKDIR /home/docker
 COPY . .
 RUN make
 
 FROM gcr.io/distroless/base
+LABEL MAINTAINER="kcoewoys"
 EXPOSE 8888
 COPY --from=build-env /home/docker/dogo /home/docker/dogo
 CMD ["/home/docker/dogo"]
