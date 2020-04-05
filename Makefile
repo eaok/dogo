@@ -25,8 +25,9 @@ latest:
 	docker build -t ${BINARY}:latest .
 
 scratch:
-	@scratch.bat
+#	@scratch.bat
 #	go build -o ${BINARY} #环境变量设置不成功过，在bat中编译
+	docker run --rm -it -e GOPROXY=https://goproxy.cn,direct -e CGO_ENABLED=0 -v /c/Users/Administrator/Documents/dogo:/home/dogo -w /home/dogo golang go build
 	docker build -f scratch.Dockerfile -t ${BINARY}:scratch .
 
 

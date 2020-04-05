@@ -1,0 +1,47 @@
+version: '3'
+services:
+  latest:
+    image: dogo:latest
+    container_name: "latest"
+    ports:
+      - 28888:8888
+  scratch:
+    image: dogo:scratch
+    container_name: "scratch"
+    ports:
+      - 28889:8888
+  multi:
+    image: dogo:multi
+    container_name: "multi"
+    ports:
+      - 28890:8888
+  golang:
+    image: dogo:golang
+    container_name: "golang"
+    ports:
+      - 28891:8888
+  dist:
+    image: dogo:dist
+    container_name: "dist"
+    ports:
+      - 28892:8888
+  alpine:
+    image: dogo:alpine
+    container_name: "alpine"
+    ports:
+      - 8888:8888
+    volumes:
+      - .:/code
+    networks:
+      backend:
+        ipv4_address: 172.19.0.2
+
+networks:
+  backend:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.19.0.0/16
+# 宿主机访问容器ip，需要添加路由表，比如
+# route -p add 172.19.0.0/16 10.0.75.2
+# 但是win10最新版(19.03.8)有bug，这种方法无效
