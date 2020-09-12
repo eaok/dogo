@@ -13,7 +13,7 @@ make docker
 ```
 
 最终镜像大小如下：
-![](http://blog.maser.top/docker/docker_size.png)
+![](https://cdn.jsdelivr.net/gh/eaok/img/docker/docker_size.png)
 
 启动：
 ```bash
